@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+      Pokédex
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,129 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Pokédex</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Barra de busca -->
+  <div class="search-container">
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionInput)="onSearchInput($event)"
+      placeholder="Buscar Pokémon por nome ou número"
+      show-clear-button="focus"
+      debounce="300">
+    </ion-searchbar>
+  </div>
+
+  <!-- Loading inicial -->
+  <div *ngIf="isLoading && pokemons.length === 0" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando Pokémons...</p>
+  </div>
+
+  <!-- Lista de Pokémons -->
+  <ion-grid *ngIf="!isLoading || pokemons.length > 0">
+    <ion-row>
+      <ion-col 
+        size="12" 
+        size-sm="6" 
+        size-md="4" 
+        size-lg="3" 
+        *ngFor="let pokemon of filteredPokemons; trackBy: trackByPokemonId">
+        
+        <ion-card 
+          class="pokemon-card" 
+          (click)="goToPokemonDetail(pokemon)"
+          [class.favorite]="isFavorite(pokemon.id)">
+          
+          <!-- Botão de favorito -->
+          <ion-button 
+            fill="clear" 
+            class="favorite-btn"
+            (click)="toggleFavorite(pokemon, $event)">
+            <ion-icon 
+              [name]="isFavorite(pokemon.id) ? 'heart' : 'heart-outline'"
+              [color]="isFavorite(pokemon.id) ? 'danger' : 'medium'">
+            </ion-icon>
+          </ion-button>
+
+          <!-- Número do Pokémon -->
+          <div class="pokemon-number">
+            #{{ pokemon.id.toString().padStart(3, '0') }}
+          </div>
+
+          <!-- Imagem do Pokémon -->
+          <div class="pokemon-image-container">
+            <ion-img 
+              [src]="getPokemonImageUrl(pokemon)" 
+              [alt]="pokemon.name"
+              class="pokemon-image">
+            </ion-img>
+          </div>
+
+          <ion-card-header>
+            <ion-card-title class="pokemon-name">
+              {{ pokemon.name | titlecase }}
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- Tipos do Pokémon -->
+            <div class="pokemon-types">
+              <ion-badge 
+                *ngFor="let type of getPokemonTypes(pokemon)"
+                [style.background-color]="getTypeColor(type)"
+                class="type-badge">
+                {{ type | titlecase }}
+              </ion-badge>
+            </div>
+
+            <!-- Informações básicas -->
+            <div class="pokemon-stats">
+              <div class="stat-item">
+                <span class="stat-label">Altura:</span>
+                <span class="stat-value">{{ (pokemon.height / 10).toFixed(1) }}m</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Peso:</span>
+                <span class="stat-value">{{ (pokemon.weight / 10).toFixed(1) }}kg</span>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Mensagem quando não há resultados -->
+  <div *ngIf="filteredPokemons.length === 0 && !isLoading && searchTerm" class="no-results">
+    <ion-icon name="search" size="large"></ion-icon>
+    <h3>Nenhum Pokémon encontrado</h3>
+    <p>Tente buscar por outro nome ou número</p>
+  </div>
+
+  <!-- Scroll infinito -->
+  <ion-infinite-scroll 
+    *ngIf="hasMoreData && !searchTerm"
+    threshold="100px" 
+    (ionInfinite)="loadPokemons($event)">
+    <ion-infinite-scroll-content
+      loading-spinner="bubbles"
+      loading-text="Carregando mais Pokémons...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- Toast para feedback -->
+  <ion-toast
+    [isOpen]="showToast"
+    [message]="toastMessage"
+    duration="2000"
+    position="bottom"
+    (didDismiss)="onToastDismiss()">
+  </ion-toast>
 </ion-content>
