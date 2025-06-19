@@ -1,0 +1,393 @@
+.controls-container {
+  padding: 16px;
+  background: var(--ion-color-light);
+  border-bottom: 1px solid var(--ion-color-light-shade);
+}
+
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  gap: 16px;
+  
+  .type-filter {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .view-mode {
+    flex-shrink: 0;
+    width: auto;
+    min-width: 100px;
+  }
+}
+
+.clear-button-container {
+  margin-top: 12px;
+  text-align: center;
+}
+
+// Modo Grid (reutiliza estilos da página principal)
+.pokemon-card {
+  position: relative;
+  margin: 8px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+.pokemon-number {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.pokemon-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 160px;
+  
+  .pokemon-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.pokemon-name {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  color: var(--ion-color-dark);
+}
+
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+  
+  .type-badge {
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .type-badge-small {
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.pokemon-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--ion-color-medium);
+      margin-bottom: 4px;
+    }
+    
+    .stat-value {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+// Modo Lista
+.list-container {
+  padding: 16px;
+}
+
+.pokemon-list-item {
+  margin-bottom: 12px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .list-content {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.pokemon-image-small {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ion-img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+}
+
+.pokemon-info {
+  flex: 1;
+  min-width: 0;
+  
+  .pokemon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    
+    .pokemon-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      color: var(--ion-color-dark);
+      text-align: left;
+    }
+    
+    .pokemon-number {
+      position: static;
+      background: var(--ion-color-medium);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  
+  .pokemon-types {
+    justify-content: flex-start;
+    margin: 8px 0;
+  }
+  
+  .pokemon-measurements {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--ion-color-medium);
+    
+    span {
+      font-weight: 500;
+    }
+  }
+}
+
+.remove-btn-list {
+  flex-shrink: 0;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+// Estados vazios
+.empty-favorites,
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  
+  ion-icon {
+    color: var(--ion-color-medium);
+    margin-bottom: 16px;
+  }
+  
+  h2, h3 {
+    color: var(--ion-color-dark);
+    margin: 0 0 8px 0;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+}
+
+// Responsividade
+@media (max-width: 576px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 12px;
+    
+    .type-filter,
+    .view-mode {
+      width: 100%;
+    }
+  }
+  
+  .pokemon-card {
+    margin: 4px;
+  }
+  
+  .pokemon-image-container {
+    min-height: 140px;
+    padding: 16px;
+    
+    .pokemon-image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .pokemon-list-item {
+    .list-content {
+      padding: 12px;
+      gap: 12px;
+    }
+  }
+  
+  .pokemon-image-small {
+    width: 64px;
+    height: 64px;
+    
+    ion-img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  
+  .pokemon-info {
+    .pokemon-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      
+      .pokemon-name {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .controls-container {
+    padding: 24px;
+  }
+  
+  .list-container {
+    padding: 24px;
+  }
+  
+  .pokemon-image-container {
+    min-height: 180px;
+    padding: 24px;
+    
+    .pokemon-image {
+      width: 140px;
+      height: 140px;
+    }
+  }
+}
+
+// Animações
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pokemon-card,
+.pokemon-list-item {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Segmentos personalizados
+.type-filter,
+.view-mode {
+  border-radius: 12px;
+  background: white;
+  
+  ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+    --color-checked: var(--ion-color-primary);
+    --color: var(--ion-color-medium);
+    
+    ion-label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}
+

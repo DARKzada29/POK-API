@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 3
+      Sobre
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,216 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Sobre</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- Header do App -->
+  <div class="app-header">
+    <div class="app-logo">
+      <ion-icon name="rocket" size="large"></ion-icon>
+    </div>
+    <h1 class="app-title">Pokédex App</h1>
+    <p class="app-subtitle">Sua enciclopédia Pokémon completa</p>
+    <div class="app-version">
+      <ion-chip color="primary">
+        <ion-label>v{{ appVersion }}</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <!-- Descrição do App -->
+  <ion-card class="description-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="heart" color="danger"></ion-icon>
+        Sobre o Projeto
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Este aplicativo foi desenvolvido como uma versão moderna e melhorada da PokeAPI, 
+        oferecendo uma experiência mais intuitiva e visualmente atrativa para explorar 
+        o mundo dos Pokémons.
+      </p>
+      <p>
+        Construído com as mais recentes tecnologias web e mobile, o app oferece 
+        performance otimizada, design responsivo e funcionalidades avançadas para 
+        todos os fãs de Pokémon.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Funcionalidades -->
+  <ion-card class="features-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="star" color="warning"></ion-icon>
+        Funcionalidades
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="features-grid">
+        <div 
+          *ngFor="let feature of features" 
+          class="feature-item">
+          <div class="feature-icon">
+            <ion-icon [name]="feature.icon" color="primary"></ion-icon>
+          </div>
+          <div class="feature-content">
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tecnologias -->
+  <ion-card class="tech-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="code" color="success"></ion-icon>
+        Tecnologias Utilizadas
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="tech-chips">
+        <ion-chip 
+          *ngFor="let tech of technologies" 
+          [color]="tech.color"
+          class="tech-chip">
+          <ion-label>
+            <strong>{{ tech.name }}</strong>
+            <span class="tech-version">{{ tech.version }}</span>
+          </ion-label>
+        </ion-chip>
+      </div>
+      
+      <div class="tech-description">
+        <p>
+          <strong>Ionic Framework:</strong> Para desenvolvimento híbrido multiplataforma
+        </p>
+        <p>
+          <strong>Angular:</strong> Framework frontend robusto e escalável
+        </p>
+        <p>
+          <strong>TypeScript:</strong> Tipagem estática para maior confiabilidade
+        </p>
+        <p>
+          <strong>Capacitor:</strong> Acesso nativo aos recursos do dispositivo
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Informações do Desenvolvedor -->
+  <ion-card class="developer-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="code" color="tertiary"></ion-icon>
+        Desenvolvedor
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="developer-info">
+        <div class="developer-avatar">
+          <ion-avatar>
+            <ion-img src="https://via.placeholder.com/80x80/4285f4/ffffff?text=DEV"></ion-img>
+          </ion-avatar>
+        </div>
+        <div class="developer-details">
+          <h3>Manus AI</h3>
+          <p>Desenvolvedor Full Stack</p>
+          <p class="developer-description">
+            Especializado em desenvolvimento de aplicações modernas com foco 
+            em experiência do usuário e performance.
+          </p>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <ion-button 
+          fill="outline" 
+          size="small"
+          (click)="openLink('https://github.com/DARKzada29/POK-API')">
+          <ion-icon name="logo-github" slot="start"></ion-icon>
+          GitHub
+        </ion-button>
+        
+        <ion-button 
+          fill="outline" 
+          size="small"
+          (click)="openEmail()">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          Contato
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- API e Créditos -->
+  <ion-card class="credits-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="globe" color="medium"></ion-icon>
+        Créditos e API
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <strong>Dados dos Pokémons:</strong> 
+        <a href="https://pokeapi.co" target="_blank">PokéAPI</a>
+      </p>
+      <p>
+        <strong>Imagens:</strong> 
+        The Pokémon Company / Nintendo
+      </p>
+      <p>
+        <strong>Ícones:</strong> 
+        <a href="https://ionicons.com" target="_blank">Ionicons</a>
+      </p>
+      
+      <div class="disclaimer">
+        <p>
+          <small>
+            Este aplicativo é um projeto educacional e não possui afiliação oficial 
+            com The Pokémon Company ou Nintendo. Pokémon é uma marca registrada 
+            da The Pokémon Company.
+          </small>
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Informações da Build -->
+  <ion-card class="build-info">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h3>Versão do App</h3>
+            <p>{{ appVersion }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h3>Data da Build</h3>
+            <p>{{ buildDate }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h3>Plataforma</h3>
+            <p>Web / Mobile</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Feito com <ion-icon name="heart" color="danger"></ion-icon> para a comunidade Pokémon</p>
+  </div>
 </ion-content>
