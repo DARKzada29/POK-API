@@ -4,7 +4,7 @@
       <ion-back-button (click)="goBack()" defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      {{ pokemon?.name | titlecase || 'Carregando...' }}
+      {{ getPokemonName() }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="pokemon" (click)="toggleFavorite()">
@@ -142,7 +142,7 @@
             
             <div class="total-stats">
               <strong>
-                Total: {{ pokemon.stats?.reduce((sum, stat) => sum + stat.base_stat, 0) }}
+                Total: {{ getTotalStats() }}
               </strong>
             </div>
           </ion-card-content>

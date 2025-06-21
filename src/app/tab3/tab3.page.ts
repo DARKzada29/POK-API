@@ -28,7 +28,7 @@ import {
   globe, 
   heart, 
   code, 
-  phone,
+  phonePortrait,
   star,
   rocket,
   shield,
@@ -85,7 +85,7 @@ export class Tab3Page {
       description: 'Salve seus Pokémons favoritos com persistência local'
     },
     {
-      icon: 'phone',
+      icon: 'phonePortrait',
       title: 'Design Responsivo',
       description: 'Interface adaptável para dispositivos móveis e desktop'
     },
@@ -114,7 +114,7 @@ export class Tab3Page {
       globe, 
       heart, 
       code, 
-      phone,
+      phonePortrait,
       star,
       rocket,
       shield,

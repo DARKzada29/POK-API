@@ -108,7 +108,8 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
     this.isLoading = true;
     
     try {
-      this.pokemon = await this.pokemonService.getCompletePokemonDetails(this.pokemonId).toPromise();
+      const pokemon = await this.pokemonService.getCompletePokemonDetails(this.pokemonId).toPromise();
+      this.pokemon = pokemon || null;
       
       if (this.pokemon?.species?.flavor_text_entries) {
         this.pokemonDescription = this.getDescription(this.pokemon.species.flavor_text_entries);
@@ -266,5 +267,14 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
     }
     
     return sprites;
+  }
+
+  getPokemonName(): string {
+    return this.pokemon?.name ? (this.pokemon.name.charAt(0).toUpperCase() + this.pokemon.name.slice(1)) : 'Carregando...';
+  }
+
+  getTotalStats(): number {
+    if (!this.pokemon?.stats) return 0;
+    return this.pokemon.stats.reduce((sum, stat) => sum + stat.base_stat, 0);
   }
 }
