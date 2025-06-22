@@ -268,7 +268,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📞 Contato
 
-**Desenvolvedor**: Manus AI  
 **GitHub**: [DARKzada29](https://github.com/DARKzada29)  
 **Email**: contato@pokedex.app
 
